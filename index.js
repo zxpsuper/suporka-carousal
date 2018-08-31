@@ -2,5 +2,6 @@
 import Carousal from './carousal.js'
 new Carousal({
   time: 4000,
-  haha: true
+  haha: true,
+  transition: 0.8
 })
