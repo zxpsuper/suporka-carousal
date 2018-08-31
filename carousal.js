@@ -18,7 +18,7 @@ class Carousal {
     // 首尾添加元素
     this.pushItem();
     // 开始移动
-    if (this.option.autoScroll) this.requestAnimFrame(this.move());
+    if (this.option.autoScroll) this.requestAnimFrame(this.autoMove());
   }
   // 初始化添加首尾子元素
   pushItem() {
@@ -33,7 +33,8 @@ class Carousal {
     document.getElementById("wrapper").style.left =
       document.getElementById("wrapper").offsetLeft - movePx + "px";
   }
-  move() {
+  // 自动轮播
+  autoMove() {
     let movePx = this.carousal.offsetWidth;
     setInterval(() => {
       this.number += 1;
@@ -42,6 +43,7 @@ class Carousal {
       if (this.number === this.option.childrenLength + 1) this.startMove()
     }, this.option.time);
   }
+  // 开始移动
   startMove() {
     this.timer = setTimeout(() => {
       this.wrapper.style.transition = `none`;
