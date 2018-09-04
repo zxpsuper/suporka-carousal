@@ -5,14 +5,29 @@
     <meta charset="UTF-8">
     <title>Suporka Vue App</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div{margin:0;border:0;padding:0;}
       #carousal {
         width: 557px;
         overflow: hidden;
         position: relative;
       }
       #wrapper {
+        display: box;               /* OLD - Android 4.4- */
+        display: -webkit-box;       /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;          /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;       /* TWEENER - IE 10 */
+        display: -webkit-flex;      /* NEW - Chrome */
         display: flex;
+        -webkit-flex-wrap: nowrap;
+        -moz-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        -o-flex-wrap: nowrap;
         flex-wrap: nowrap;
+        white-space: nowrap;
         position: relative;
         left: 0;
       }
@@ -35,5 +50,5 @@
         </div>
       </div>
     </div>
-  </body>
+<script type="text/javascript" src="carousal.js"></script></body>
 </html>

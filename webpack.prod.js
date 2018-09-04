@@ -6,11 +6,15 @@ const merge = require('webpack-merge');
 const common = require('./webpack.base.js');
 
 module.exports = merge(common, {
+  entry: './carousal-test.js', //入口
   module: {},
   plugins: [],
   mode: 'production',
   output: {
-    filename: 'js/[name].[contenthash].js', //contenthash 若文件内容无变化，则contenthash 名称不变
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, './'),
+    library: 'Carousal',
+    libraryExport: "default",
+    libraryTarget: 'umd',
+    filename: 'carousal.js',
   },
 });
