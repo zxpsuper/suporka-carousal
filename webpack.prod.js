@@ -6,7 +6,8 @@ const merge = require('webpack-merge');
 const common = require('./webpack.base.js');
 
 module.exports = merge(common, {
-  entry: './carousal-test.js', //入口
+  // entry: './carousal-test.js', //入口
+  entry: './index.js', //入口
   module: {},
   plugins: [],
   mode: 'production',
@@ -15,6 +16,7 @@ module.exports = merge(common, {
     library: 'Carousal',
     libraryExport: "default",
     libraryTarget: 'umd',
-    filename: 'carousal.js',
+    filename: 'alert.js',
+    // filename: 'carousal.js',
   },
 });
