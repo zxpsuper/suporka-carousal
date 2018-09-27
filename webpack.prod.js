@@ -6,17 +6,15 @@ const merge = require('webpack-merge');
 const common = require('./webpack.base.js');
 
 module.exports = merge(common, {
-  // entry: './carousal-test.js', //入口
-  entry: './colorGame-dev.js', //入口
+  entry: './carousal-dev.js', //入口
   module: {},
   plugins: [],
   mode: 'production',
   output: {
     path: path.resolve(__dirname, './'),
-    library: 'ColorGame',
+    library: 'Carousal',
     libraryExport: "default",
     libraryTarget: 'umd',
-    filename: 'colorGame.js',
-    // filename: 'carousal.js',
+    filename: 'carousal.js',
   },
 });
