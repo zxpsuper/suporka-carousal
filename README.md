@@ -11,6 +11,40 @@ npm install suporka-carousal
 
 ```
 
+[Demo](https://zxpsuper.github.io/Demo/carousal/)
+
+```html
+<div id="carousal">
+
+  <!-- left buttton -->
+  <button type="button" class="suporka-carousel__arrow suporka-carousel__arrow--left" style="" id="suporka-prev-btn">&lt;</button>
+  <div id="wrapper">
+    <div class="box">
+      <img src="http://h5.sztoda.cn/static/img/loveLetter/teacher/teacher1.jpg" alt="">
+    </div>
+    <div class="box">
+      <img src="http://h5.sztoda.cn/static/img/loveLetter/teacher/teacher2.jpg" alt="">
+    </div>
+    <div class="box">
+      <img src="http://h5.sztoda.cn/static/img/loveLetter/teacher/teacher3.jpg" alt="">
+    </div>
+    <div class="box">
+      <img src="http://h5.sztoda.cn/static/img/loveLetter/teacher/teacher4.jpg" alt="">
+    </div>
+  </div>
+  <!-- right button -->
+  <button type="button" class="suporka-carousel__arrow suporka-carousel__arrow--right" style="" id="suporka-next-btn">&gt;</button>
+
+  <!-- dot dom -->
+  <div id="suporka-dot">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+```
 ```js
 // import carousal in js
 import Carousal from 'suporka-carousal'
