@@ -1,8 +1,8 @@
-// import 'babel-polyfill'
+import './index.scss';
 class Carousal {
   constructor(userOption) {
     this.option = {
-      time: 3000,
+      time: 4000,
       transition: 0.8,
       childrenLength: document.getElementById("wrapper").children.length,
       autoScroll: true
@@ -14,6 +14,7 @@ class Carousal {
     this.interval = null;
     this.carousal = document.getElementById("carousal");
     this.wrapper = document.querySelector("#wrapper");
+    this.dot = document.getElementById('suporka-dot')
     this.init(userOption);
   }
   init(userOption) {
@@ -58,6 +59,46 @@ class Carousal {
         this.autoMove();
       });
     }
+    let prev = document.getElementById('suporka-prev-btn')
+    let next = document.getElementById('suporka-next-btn')
+    if (prev && next) {
+      this.addEvent(prev, "click", event => {
+        this.prev()
+      });
+      this.addEvent(next, "click", event => {
+        this.next()
+      });
+    }
+  }
+  // prev上一张
+  prev() {
+    let movePx = this.carousal.offsetWidth;
+    this.number -= 1;
+    
+    document.getElementById("wrapper").style.left =
+      0 - movePx * this.number + "px";
+    if (this.number === 0) this.goLastOne();
+    this.setDotClass(this.dot.children, this.number - 1, 'suporka-dot--acitve')
+  }
+  next() {
+    let movePx = this.carousal.offsetWidth;
+    this.number += 1;
+    document.getElementById("wrapper").style.left =
+      0 - movePx * this.number + "px";
+    if (this.number === this.option.childrenLength + 1) this.startMove();
+    this.setDotClass(this.dot.children, this.number - 1, 'suporka-dot--acitve')
+  }
+  goLastOne() {
+    this.number = this.option.childrenLength;
+    this.timer = setTimeout(() => {
+      this.wrapper.style.transition = `none`;
+      document.getElementById("wrapper").style.left =
+        -this.carousal.offsetWidth * this.option.childrenLength + "px";
+      setTimeout(() => {
+        this.wrapper.style.transition = `all ${this.option.transition}s`;
+      }, 100);
+      
+    }, this.option.transition * 1000);
   }
   // 初始化添加首尾子元素
   pushItem() {
@@ -71,6 +112,7 @@ class Carousal {
     parent.insertBefore(last, parent.children[0]);
     document.getElementById("wrapper").style.left =
       document.getElementById("wrapper").offsetLeft - movePx + "px";
+    if (this.dot) addClass(this.dot.children[0], 'suporka-dot--acitve')
   }
   // 自动轮播
   autoMove() {
@@ -80,19 +122,29 @@ class Carousal {
       document.getElementById("wrapper").style.left =
         0 - movePx * this.number + "px";
       if (this.number === this.option.childrenLength + 1) this.startMove();
+
+      this.setDotClass(this.dot.children, this.number - 1, 'suporka-dot--acitve')
     }, this.option.time);
   }
   // 开始移动
   startMove() {
+    this.number = 1;
     this.timer = setTimeout(() => {
       this.wrapper.style.transition = `none`;
       document.getElementById("wrapper").style.left =
         -this.carousal.offsetWidth + "px";
       setTimeout(() => {
         this.wrapper.style.transition = `all ${this.option.transition}s`;
-      }, 50);
-      this.number = 1;
+      }, 100);
     }, this.option.transition * 1000);
+  }
+
+  setDotClass(parent, index, cls) {
+    if (!this.dot) return false;
+    for (let i = 0; i < parent.length; i++) {
+      removeClass(parent[i], cls)
+    }
+    addClass(parent[index], cls)
   }
   requestAnimFrame() {
     return (
@@ -105,6 +157,19 @@ class Carousal {
         window.setTimeout(callback, 1000 / 60);
       }
     );
+  }
+}
+function hasClass(ele, cls) {
+  if (ele.className) return ele.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)"));
+  else return false
+}
+function addClass(ele, cls) {
+  if (!hasClass(ele, cls)) ele.className += " " + cls;
+}
+function removeClass(ele, cls) {
+  if (hasClass(ele, cls)) {
+    let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+    ele.className = ele.className.replace(reg, " ");
   }
 }
 

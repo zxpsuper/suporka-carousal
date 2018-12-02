@@ -5,36 +5,14 @@
     <meta charset="UTF-8">
     <title>Suporka Vue App</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      div{margin:0;border:0;padding:0;}
-      #carousal {
-        width: 557px;
-        overflow: hidden;
-        position: relative;
-      }
-      #wrapper {
-        display: box;               /* OLD - Android 4.4- */
-        display: -webkit-box;       /* OLD - iOS 6-, Safari 3.1-6 */
-        display: -moz-box;          /* OLD - Firefox 19- (buggy but mostly works) */
-        display: -ms-flexbox;       /* TWEENER - IE 10 */
-        display: -webkit-flex;      /* NEW - Chrome */
-        display: flex;
-        -webkit-flex-wrap: nowrap;
-        -moz-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
-        -o-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-        position: relative;
-        left: 0;
+      #suporka-dot .suporka-dot--acitve {
+        background: red!important;
       }
     </style>
   </head>
   <body>
     <div id="carousal">
+      <button type="button" class="suporka-carousel__arrow suporka-carousel__arrow--left" style="" id="suporka-prev-btn">&lt;</button>
       <div id="wrapper">
         <div class="box">
           <img src="http://h5.sztoda.cn/static/img/loveLetter/teacher/teacher1.jpg" alt="">
@@ -49,7 +27,15 @@
           <img src="http://h5.sztoda.cn/static/img/loveLetter/teacher/teacher4.jpg" alt="">
         </div>
       </div>
+      <button type="button" class="suporka-carousel__arrow suporka-carousel__arrow--right" style="" id="suporka-next-btn">&gt;</button>
+      <div id="suporka-dot">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
+  <!-- <script type="text/javascript" src="carousal-dev.js"></script> -->
   <script type="text/javascript" src="carousal.js"></script>
   <script>
     new Carousal()
