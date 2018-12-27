@@ -1,4 +1,5 @@
-import Carousal from './carousal-dev.js'
+import Carousal from "./carousal-dev.js";
 new Carousal({
-  autoScroll: true
-})
+  autoScroll: true,
+  showDot: true
+});

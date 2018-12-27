@@ -2,18 +2,22 @@
   margin: 0;
   padding: 0;
 }
-div{margin:0;border:0;padding:0;}
+div {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
 #carousal {
   width: 557px;
   overflow: hidden;
   position: relative;
 }
 #wrapper {
-  display: box;               /* OLD - Android 4.4- */
-  display: -webkit-box;       /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;          /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;       /* TWEENER - IE 10 */
-  display: -webkit-flex;      /* NEW - Chrome */
+  display: box; /* OLD - Android 4.4- */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Chrome */
   display: flex;
   -webkit-flex-wrap: nowrap;
   -moz-flex-wrap: nowrap;
@@ -33,9 +37,9 @@ div{margin:0;border:0;padding:0;}
   height: 36px;
   width: 36px;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 50%;
-  background-color: rgba(31,45,61,.5);
+  background-color: rgba(31, 45, 61, 0.5);
   color: #fff;
   position: absolute;
   top: 50%;
@@ -46,25 +50,25 @@ div{margin:0;border:0;padding:0;}
   font-weight: 600;
 }
 .suporka-carousel__arrow--right {
-    right: -38px;
+  right: -38px;
 }
 .suporka-carousel__arrow--left {
-    left: -38px;
+  left: -38px;
 }
-#carousal:hover> .suporkal-carousel__arrow {
+#carousal:hover > .suporkal-carousel__arrow {
   display: block;
 }
 #carousal:hover .suporka-carousel__arrow--right {
-    right: 16px;
+  right: 16px;
 }
 #carousal:hover .suporka-carousel__arrow--left {
-    left: 16px;
+  left: 16px;
 }
 #suporka-dot {
   position: absolute;
   bottom: 20px;
   left: 50%;
-  transform: translate(-50%, 0)
+  transform: translate(-50%, 0);
 }
 #suporka-dot span {
   width: 10px;
