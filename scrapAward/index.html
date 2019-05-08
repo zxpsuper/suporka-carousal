@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>演示：使用HTML5实现刮刮卡效果</title>
+        <style type="text/css">
+            .demo {
+                width: 320px;
+                margin: 10px auto 20px auto;
+                min-height: 300px;
+            }
+            .msg {
+                text-align: center;
+                height: 32px;
+                line-height: 32px;
+                font-weight: bold;
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div class="msg">
+                刮开灰色部分看看，<a href="javascript:void(0)" id="try_again"
+                    >再来一次</a
+                >
+            </div>
+            <div class="demo">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    </body>
+</html>
