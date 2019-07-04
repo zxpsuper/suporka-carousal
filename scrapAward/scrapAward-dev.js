@@ -5,10 +5,17 @@ class ScrapAward {
         this.option = {
             canvasId: 'canvas',
             backgroundImageUrl:
-                'https://zxpsuper.github.io/Demo/guajiang/p_1.jpg',
+                'https://user-gold-cdn.xitu.io/2019/5/20/16ad4ac58d13651d?w=903&h=1605&f=jpeg&s=107934',
             width: 320,
             height: 160,
             backgroundSize: '100% 100%',
+            // coverImage:
+            //     'https://user-gold-cdn.xitu.io/2019/5/9/16a9b8578302943c?w=1080&h=1440&f=jpeg&s=92936',
+            coverImage: {
+                url: '',
+                width: 320,
+                height: 160,
+            },
         };
         this.ctx = null;
         this.init(userOption);
@@ -25,9 +32,10 @@ class ScrapAward {
         } else {
             extend(this.option, userOption, true);
         }
-
+        console.log(this.option);
         let that = this,
             img = (this.img = new Image()),
+            imgLoaded = false,
             canvas = (this.canvas = document.querySelector(
                 `#${this.option.canvasId}`
             )),
@@ -35,52 +43,88 @@ class ScrapAward {
             tapstart = hastouch ? 'touchstart' : 'mousedown',
             tapmove = hastouch ? 'touchmove' : 'mousemove',
             tapend = hastouch ? 'touchend' : 'mouseup',
-            mousedown = false;
+            mousedown = false,
+            coverImg = (this.coverImg = new Image()),
+            coverImgLoad = false;
+
+        coverImg.src = this.option.coverImage.url;
+        coverImg.crossOrigin = 'Anonymous';
+
         img.src = this.option.backgroundImageUrl;
+
         var w = (img.width = this.option.width),
             h = (img.height = this.option.height);
         this.canvasOffsetX = canvas.offsetLeft;
         this.canvasOffsetY = canvas.offsetTop;
         canvas.width = w;
         canvas.height = h;
-        canvas.style.background = 'url(' + img.src + ') no-repeat';
-        canvas.style.backgroundSize = this.option.backgroundSize || 'contain';
+
         this.ctx = canvas.getContext('2d');
         let ctx = this.ctx;
-        this.img.addEventListener('load', backgroundImageLoaded.bind(this));
-        // 图片加载完成后
+        this.img.addEventListener('load', backgroundImageLoaded);
+        this.option.coverImage.url &&
+            this.coverImg.addEventListener('load', coverImageLoaded);
+
+        // 背景图片加载完成后
         function backgroundImageLoaded(e) {
-            ctx.fillStyle = 'gray';
-            ctx.fillRect(0, 0, w, h);
+            imgLoaded = true;
+            fillCanvas();
+            canvas.style.background = 'url(' + img.src + ') no-repeat';
+            canvas.style.backgroundSize =
+                that.option.backgroundSize || 'contain';
+        }
+        // 覆蓋图片加载完成后
+        function coverImageLoaded(e) {
+            coverImgLoad = true;
+            fillCanvas();
+            canvas.style.background = 'url(' + img.src + ') no-repeat';
+            canvas.style.backgroundSize =
+                that.option.backgroundSize || 'contain';
+        }
+        function fillCanvas() {
+            if (that.option.coverImage.url && (!imgLoaded || !coverImgLoad))
+                return;
+            if (!that.option.coverImage.url) {
+                ctx.fillStyle = 'gray';
+                ctx.fillRect(0, 0, w, h);
+            } else {
+                ctx.drawImage(
+                    coverImg,
+                    0,
+                    0,
+                    that.option.coverImage.width,
+                    that.option.coverImage.height
+                );
+            }
             ctx.globalCompositeOperation = 'destination-out';
-            canvas.addEventListener(tapstart, eventDown.bind(this));
-            canvas.addEventListener(tapend, eventUp.bind(this));
-            canvas.addEventListener(tapmove, eventMove.bind(this));
+            canvas.addEventListener(tapstart, eventDown);
+            canvas.addEventListener(tapend, eventUp);
+            canvas.addEventListener(tapmove, eventMove);
         }
         // 点击开始事件
         function eventDown(e) {
             e.preventDefault();
-            this.mousedown = true;
+            that.mousedown = true;
         }
         // 点击结束事件
         function eventUp(e) {
             e.preventDefault();
-            this.mousedown = false;
+            that.mousedown = false;
         }
         // 刮奖事件
         function eventMove(e) {
-            let ctx = this.ctx;
+            let ctx = that.ctx;
             e.preventDefault();
-            if (this.mousedown) {
+            if (that.mousedown) {
                 if (e.changedTouches) {
                     e = e.changedTouches[0];
                 }
                 var x =
                         (e.clientX + document.body.scrollLeft || e.pageX) -
-                            this.canvasOffsetX || 0,
+                            that.canvasOffsetX || 0,
                     y =
                         (e.clientY + document.body.scrollTop || e.pageY) -
-                            this.canvasOffsetY || 0;
+                            that.canvasOffsetY || 0;
 
                 ctx.beginPath();
                 ctx.arc(x, y, 10, 0, Math.PI * 2);
