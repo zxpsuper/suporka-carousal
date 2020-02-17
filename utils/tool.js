@@ -4,3 +4,8 @@ export function extend(o, n, override) {
             o[p] = n[p];
     }
 }
+
+
+export function error(message) {
+    typeof console !== 'undefined' && console.error(`[html-router] ${message}`);
+}

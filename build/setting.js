@@ -1,3 +1,5 @@
+
+let name = 'htmlRouter';
 module.exports = {
     /* // carousal
     devEntry: './carousal/index.js',
@@ -14,9 +16,9 @@ module.exports = {
     pluginHtml: '../luckyDraw/index.html', */
 
     // luckDraw
-    devEntry: './scrapAward/index.js',
-    prodEntry: './scrapAward/scrapAward-dev.js',
-    library: 'scrapAward',
-    filename: 'scrapAward.js',
-    pluginHtml: '../scrapAward/index.html',
+    devEntry: `./${name}/index.js`,
+    prodEntry: `./${name}/${name}-dev.js`,
+    library: `${name}`,
+    filename: `${name}.js`,
+    pluginHtml: `../${name}/index.html`,
 };
