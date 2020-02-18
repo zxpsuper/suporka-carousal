@@ -1,6 +1,6 @@
 import Router from './htmlRouter-dev'
 window.router = new Router({
-    mode: 'hash',
+    mode: 'history',
     routes: [
         {
             path: '/monday',
