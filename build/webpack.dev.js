@@ -11,6 +11,13 @@ module.exports = merge(common, {
     devServer: {
         // 开发服务器
         contentBase: '../dist',
+        historyApiFallback:{
+            rewrites:[
+                {from:/./,to:'/index.html'}
+            ]
+            
+        }
+
     },
     output: {
         // 输出

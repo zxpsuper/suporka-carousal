@@ -1,5 +1,5 @@
 
-let name = 'htmlRouter';
+let name = 'imageCompress';
 module.exports = {
     /* // carousal
     devEntry: './carousal/index.js',
