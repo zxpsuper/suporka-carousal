@@ -1,5 +1,6 @@
+let name = 'game2048';
 
-let name = 'imageCompress';
+// imageCompress
 module.exports = {
     /* // carousal
     devEntry: './carousal/index.js',
